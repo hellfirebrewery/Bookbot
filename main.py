@@ -7,14 +7,28 @@ def main():
     #print(f"{count} words found in the document")
 
     from stats import character_count
-    char = character_count(output)
-    print(f"{char}")
+    total_char = character_count(output)
+    #print(f"{total_char}")
 
+    from stats import dict_seperate
+    complete_list = dict_seperate(total_char)
+    #print(f"{complete_list}")
+
+    from stats import sort_dict_list
+    dict_list = sort_dict_list(complete_list)
+    
     print("============ BOOKBOT ============")
     print("Analyzing book found at books/frankenstein.txt...")
     print("----------- Word Count ----------")
     print(f"Found {count} total words")
     print("--------- Character Count -------")
+    for item in dict_list:
+        char = item["char"]
+        num = item["num"]
+        if char.isalpha():
+            print(f"{char}: {num}")
+
+    print("============= END ===============")
 
 
 def get_book_text(filename):
@@ -25,4 +39,6 @@ def get_book_text(filename):
         return f.read()
 
 
+
 main()
+
