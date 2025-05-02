@@ -1,5 +1,21 @@
+def get_book_text(filename):
+    with open(filename) as f:
+     #do something with f (the file) here
+   
+     #f is a file object
+        return f.read()
+
 def main():
-    filename = "books/frankenstein.txt"
+
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        return sys.exit(1)
+    
+    filename = sys.argv[1]
+
+    #filename = "books/frankenstein.txt"
     output = get_book_text(filename)
     
     from stats import word_count
@@ -18,7 +34,7 @@ def main():
     dict_list = sort_dict_list(complete_list)
     
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {sys.argv[1]}")
     print("----------- Word Count ----------")
     print(f"Found {count} total words")
     print("--------- Character Count -------")
@@ -31,14 +47,8 @@ def main():
     print("============= END ===============")
 
 
-def get_book_text(filename):
-    with open(filename) as f:
-    # do something with f (the file) here
-   
-    # f is a file object
-        return f.read()
 
 
-
+ 
 main()
 
